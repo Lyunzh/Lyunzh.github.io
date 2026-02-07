@@ -7,54 +7,32 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <nav class="lang-switcher" aria-label="Language">
-    <a href="#" data-lang="zh" title="中文">中文</a>
-    <a href="#" data-lang="en" title="English">EN</a>
-  </nav>
-
   <div class="page">
     <header class="hero">
-      <h1 data-i18n="homeTitle">你好，这是我的 GitHub</h1>
-      <p data-i18n="homeSubtitle">软件工程 · 后端与 AI Agent</p>
+      <h1>Hi, I'm on GitHub</h1>
+      <p>Software Engineering · Backend & AI Agent</p>
       <div class="hero-cta">
-        <a href="resume.html" class="primary" data-i18n="ctaResume">查看简历</a>
-        <a href="https://github.com/" class="secondary" id="github-profile-link" data-i18n="ctaProfile">GitHub 主页</a>
+        <a href="resume.html" class="primary">查看简历 / Resume</a>
+        <a href="https://github.com/" class="secondary" id="github-profile-link">GitHub Profile</a>
       </div>
     </header>
 
-    <section class="section" id="section-activity">
-      <h2 data-i18n="sectionActivity">最近动态</h2>
-      <ul class="activity-list" id="activity-list">
-        <li class="activity-loading" data-i18n="activityLoading">正在加载动态…</li>
-      </ul>
-    </section>
-
     <section class="section">
-      <h2 data-i18n="sectionRepos">仓库列表</h2>
+      <h2>Repositories</h2>
       <ul class="repo-list" id="repo-list">
-        <li class="repo-loading" data-i18n="reposLoading">正在加载仓库列表…</li>
+        <li class="repo-loading">正在加载仓库列表…</li>
       </ul>
     </section>
   </div>
 
   <footer class="site-footer">
-    <p data-i18n="footerHosted">由 GitHub Pages 托管</p>
+    <p>Hosted on GitHub Pages</p>
   </footer>
 
   <script>
     window.GITHUB_USER = 'Lyunzh';
   </script>
-  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/repos.js"></script>
-  <script src="assets/js/events.js"></script>
-  <script>
-    document.querySelectorAll('.lang-switcher a[data-lang]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.setLang(a.getAttribute('data-lang'));
-      });
-    });
-  </script>
 </body>
 </html>
