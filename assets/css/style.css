@@ -1,18 +1,20 @@
-/* ========== Variables ========== */
+/* ========== Variables — 明亮主题 ========== */
 :root {
-  --bg: #0d1117;
-  --bg-card: #161b22;
-  --border: #30363d;
-  --text: #e6edf3;
-  --text-muted: #8b949e;
-  --accent: #58a6ff;
-  --accent-hover: #79b8ff;
-  --green: #3fb950;
-  --orange: #d29922;
+  --bg: #f0f4f8;
+  --bg-card: #ffffff;
+  --border: #dde4ec;
+  --text: #1a2332;
+  --text-muted: #5c6f82;
+  --accent: #0969da;
+  --accent-hover: #0550ae;
+  --accent-bg: #e8f2ff;
+  --green: #1a7f37;
+  --orange: #9a6700;
   --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-mono: 'Cascadia Code', 'Fira Code', monospace;
   --radius: 12px;
-  --shadow: 0 8px 24px rgba(0,0,0,.25);
+  --shadow: 0 1px 4px rgba(0,0,0,.06);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,.08);
 }
 
 /* ========== Base ========== */
@@ -30,6 +32,35 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--accent-hover); text-decoration: underline; }
 
+/* ========== 语言切换器 ========== */
+.lang-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.lang-switcher a {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.lang-switcher a:hover { text-decoration: none; color: var(--accent); background: var(--accent-bg); }
+.lang-switcher a.active { color: var(--accent); background: var(--accent-bg); }
+
+/* 双语内容：按语言显示/隐藏 */
+[data-lang="zh"] .lang-en { display: none !important; }
+[data-lang="en"] .lang-zh { display: none !important; }
+
 /* ========== Layout ========== */
 .page {
   max-width: 900px;
@@ -46,6 +77,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 600;
   margin: 0 0 0.5rem;
+  color: var(--text);
 }
 .hero p {
   color: var(--text-muted);
@@ -78,9 +110,11 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 .hero-cta .secondary {
   border: 1px solid var(--border);
   color: var(--text);
+  background: var(--bg-card);
 }
 .hero-cta .secondary:hover {
-  background: var(--bg-card);
+  background: var(--accent-bg);
+  border-color: var(--accent);
   text-decoration: none;
 }
 
@@ -94,6 +128,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   margin: 0 0 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
 .repo-list {
   list-style: none;
@@ -106,10 +141,12 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  transition: border-color .2s;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
 }
 .repo-list li:hover {
   border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
 }
 .repo-list a {
   font-weight: 500;
@@ -135,12 +172,72 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   text-align: center;
 }
 
+/* ========== Activity (commits, stars, PRs) ========== */
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.activity-item {
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius);
+  transition: background .2s, border-color .2s;
+}
+.activity-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  transition: border-color .2s, box-shadow .2s;
+}
+.activity-item a:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+  text-decoration: none;
+  color: var(--text);
+}
+.activity-icon {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 1;
+}
+.activity-commit .activity-icon { background: var(--accent-bg); color: var(--accent); }
+.activity-star .activity-icon { background: #fff8e6; color: var(--orange); }
+.activity-pr .activity-icon { background: #e8f5e9; color: var(--green); }
+.activity-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.95rem;
+}
+.activity-time {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.activity-loading, .activity-error, .activity-empty {
+  color: var(--text-muted);
+  padding: 1rem;
+  text-align: center;
+  list-style: none;
+}
+
 /* ========== Resume Page ========== */
 .resume-header {
   text-align: center;
   margin-bottom: 2.5rem;
 }
-.resume-header h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+.resume-header h1 { font-size: 1.75rem; margin: 0 0 0.5rem; color: var(--text); }
 .resume-header .back-link {
   font-size: 0.95rem;
   color: var(--text-muted);
@@ -162,6 +259,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   font-size: 1rem;
   font-weight: 600;
   margin: 1.25rem 0 0.5rem;
+  color: var(--text);
 }
 .resume section h3:first-of-type { margin-top: 0; }
 .resume section p, .resume section ul {
@@ -184,9 +282,10 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  transition: border-color .2s;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
 }
-.company-block:hover { border-color: var(--accent); }
+.company-block:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
 .company-block a { display: flex; align-items: center; gap: 0.75rem; flex: 1; }
 .company-block a:hover { text-decoration: none; }
 .company-logo {
@@ -196,12 +295,13 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   object-fit: contain;
   background: #fff;
   flex-shrink: 0;
+  border: 1px solid var(--border);
 }
 .company-info { min-width: 0; }
-.company-info strong { display: block; margin-bottom: 0.2rem; }
+.company-info strong { display: block; margin-bottom: 0.2rem; color: var(--text); }
 .company-info span { font-size: 0.9rem; color: var(--text-muted); }
 
-/* Tech badges: 可点击 */
+/* Tech badges */
 .tech-badges {
   display: flex;
   flex-wrap: wrap;
@@ -213,7 +313,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   padding: 0.25rem 0.6rem;
   font-size: 0.8rem;
   font-family: var(--font-mono);
-  background: var(--bg-card);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--text);
@@ -221,7 +321,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 }
 .tech-badges a:hover {
   border-color: var(--accent);
-  background: rgba(88, 166, 255, 0.08);
+  background: var(--accent-bg);
   text-decoration: none;
 }
 
@@ -231,9 +331,10 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
   margin-bottom: 0.75rem;
 }
-.edu-block strong { display: block; margin-bottom: 0.25rem; }
+.edu-block strong { display: block; margin-bottom: 0.25rem; color: var(--text); }
 .edu-block span { color: var(--text-muted); font-size: 0.95rem; }
 
 /* Skills list */
@@ -246,6 +347,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
   margin-bottom: 1rem;
 }
 .project-card h3 { margin-top: 0; }

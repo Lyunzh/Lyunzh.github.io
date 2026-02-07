@@ -7,47 +7,51 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <nav class="lang-switcher" aria-label="Language">
+    <a href="#" data-lang="zh" title="中文">中文</a>
+    <a href="#" data-lang="en" title="English">EN</a>
+  </nav>
+
   <div class="page resume">
     <header class="resume-header">
-      <a href="index.html" class="back-link">← 返回首页</a>
-      <h1>Resume / 简历</h1>
+      <a href="index.html" class="back-link" data-i18n="backHome">← 返回首页</a>
+      <h1 data-i18n="resumeTitle">简历</h1>
     </header>
 
     <section>
-      <h2>Education Background</h2>
+      <h2 data-i18n="sectionEducation">教育背景</h2>
       <div class="edu-block">
         <strong>Tongji University（同济大学）</strong>
-        <span>Bachelor of Software Engineering · 2022.09 - 2026.07</span>
+        <span data-i18n="eduDegree">软件工程 本科 · 2022.09 - 2026.07</span>
         <div class="tech-badges" style="margin-top:0.5rem">
-          <a href="https://www.tongji.edu.cn/" target="_blank" rel="noopener">学校官网</a>
+          <a href="https://www.tongji.edu.cn/" target="_blank" rel="noopener" data-i18n="eduLink">学校官网</a>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Core Skills</h2>
+      <h2 data-i18n="sectionSkills">核心技能</h2>
       <ul class="skills-list">
-        <li><strong>Language Fundamentals：</strong> Proficient in
-          <span class="tech-badges" style="display:inline-flex;margin:0">
-            <a href="https://www.oracle.com/java/" target="_blank" rel="noopener">Java</a>
-            <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/" target="_blank" rel="noopener">JUC</a>
-            <a href="https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html" target="_blank" rel="noopener">JVM</a>
-            <a href="https://go.dev/" target="_blank" rel="noopener">Golang</a>
-            <a href="https://go.dev/tour/concurrency/1" target="_blank" rel="noopener">Goroutine</a>
-            <a href="https://www.python.org/" target="_blank" rel="noopener">Python</a>
-          </span>
-          — performance optimization
+        <li>
+          <strong data-i18n="skillLang">语言基础：</strong>
+          <span class="lang-zh">熟练 Java、JUC、JVM；Golang、Goroutine；Python 及性能优化</span>
+          <span class="lang-en">Java, JUC, JVM; Golang, Goroutine; Python, performance optimization.</span>
         </li>
-        <li><strong>Databases：</strong> Skilled in
-          <a href="https://www.mysql.com/" target="_blank" rel="noopener">MySQL</a> and
-          <a href="https://redis.io/" target="_blank" rel="noopener">Redis</a>; experienced in slow query optimization and index tuning
+        <li>
+          <strong data-i18n="skillDb">数据库：</strong>
+          <span class="lang-zh">熟练 MySQL、Redis；慢查询与索引优化经验</span>
+          <span class="lang-en">MySQL, Redis; slow query and index tuning.</span>
         </li>
-        <li><strong>AI：</strong> AI-Native; Agent engineering; experienced with Cursor/OpenCode, Claude Code, Zed, etc.; capable of delivering shippable code in prod with coding Agents</li>
+        <li>
+          <strong data-i18n="skillAi">AI：</strong>
+          <span class="lang-zh">AI-Native；跟进 Agent 工程前沿；熟练使用 Cursor/OpenCode、Claude Code、Zed 等编码 Agent，能在生产环境交付可上线代码</span>
+          <span class="lang-en">AI-Native; Agent engineering; Cursor/OpenCode, Claude Code, Zed; shippable code in production.</span>
+        </li>
       </ul>
     </section>
 
     <section>
-      <h2>Internship Experience</h2>
+      <h2 data-i18n="sectionInternship">实习经历</h2>
 
       <div class="company-block">
         <a href="https://www.zhipin.com/" target="_blank" rel="noopener">
@@ -76,18 +80,21 @@
         </div>
       </div>
 
-      <h3>Pine AI — Key work</h3>
+      <h3 data-i18n="pineWork">Pine AI — 主要工作</h3>
       <ul>
-        <li><strong>Monitoring System：</strong> Developed the monitor module, integrated multiple PaaS platforms, utilized websocket callbacks (webhook), and implemented comprehensive monitoring of agent status via OpenTelemetry.</li>
-        <li><strong>Message Bus Design：</strong> Designed and implemented a server-side distributed bus; integrated service modules via a pipeline bus, improving response speed and supporting finer-grained interactions between LLM, STT, and TTS; developed the transcriber module.</li>
-        <li><strong>AI Regression Testing Framework：</strong> Designed an agent regression testing system; simulated CSRs with an agentic approach and external LLMs; tested AI reliability across AUTH, Fraud, etc. via multi-turn conversations; wrote exec and eval prompts for simulation and scoring.</li>
+        <li class="lang-zh"><strong>监控系统：</strong>开发监控模块，对接多 PaaS，通过 webhook 与 OpenTelemetry 实现 Agent 状态监控。</li>
+        <li class="lang-en"><strong>Monitoring:</strong> monitor module, PaaS integration, webhook + OpenTelemetry for agent status.</li>
+        <li class="lang-zh"><strong>消息总线：</strong>设计并实现服务端分布式总线；通过管道总线整合模块，提升响应速度，支持 LLM/STT/TTS 细粒度交互；负责转写模块。</li>
+        <li class="lang-en"><strong>Message bus:</strong> server-side distributed bus; pipeline bus for modules; LLM/STT/TTS; transcriber module.</li>
+        <li class="lang-zh"><strong>AI 回归测试：</strong>设计 Agent 回归测试体系；用 Agent + 外部 LLM 模拟客服，多轮对话测试 AUTH、反欺诈等；编写 exec/eval 提示词。</li>
+        <li class="lang-en"><strong>AI regression testing:</strong> agent regression system; agentic CSRs + LLMs; multi-turn AUTH/Fraud; exec/eval prompts.</li>
       </ul>
     </section>
 
     <section>
-      <h2>Project Experience</h2>
+      <h2 data-i18n="sectionProject">项目经历</h2>
       <div class="project-card">
-        <h3>People review</h3>
+        <h3 data-i18n="projectPeople">People review</h3>
         <div class="tech-badges">
           <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener">Spring Boot</a>
           <a href="https://www.nginx.com/" target="_blank" rel="noopener">Nginx</a>
@@ -96,20 +103,34 @@
           <a href="https://redis.io/" target="_blank" rel="noopener">Redis</a>
         </div>
         <ul>
-          <li>Resolved Session sharing in cluster mode; implemented user login verification and permission refresh via interceptors.</li>
-          <li>Addressed database-cache consistency with Cache Aside pattern.</li>
-          <li>Reduced DB pressure with Redis for high-frequency data; solved cache penetration, avalanche, and breakdown.</li>
-          <li>Seckill eligibility pre-check with Redis + Lua; optimistic lock to prevent overselling.</li>
-          <li>Thread safety for "one order per user" in cluster mode via Redis distributed locks.</li>
+          <li class="lang-zh">集群下解决 Session 共享；拦截器实现登录校验与权限刷新。</li>
+          <li class="lang-en">Session sharing in cluster; interceptors for login and permission refresh.</li>
+          <li class="lang-zh">基于 Cache Aside 处理库表与缓存一致性。</li>
+          <li class="lang-en">Cache Aside for DB–cache consistency.</li>
+          <li class="lang-zh">Redis 缓存高频数据减压；解决穿透、雪崩、击穿。</li>
+          <li class="lang-en">Redis for hot data; cache penetration, avalanche, breakdown.</li>
+          <li class="lang-zh">Redis + Lua 做秒杀资格预检；乐观锁防超卖。</li>
+          <li class="lang-en">Redis + Lua seckill pre-check; optimistic lock.</li>
+          <li class="lang-zh">集群下用 Redis 分布式锁保证「一人一单」线程安全。</li>
+          <li class="lang-en">Redis distributed lock for one-order-per-user in cluster.</li>
         </ul>
       </div>
     </section>
   </div>
 
   <footer class="site-footer">
-    <p><a href="index.html">Home</a> · Hosted on GitHub Pages</p>
+    <p><a href="index.html" data-i18n="footerHome">首页</a> · <span data-i18n="footerHosted">由 GitHub Pages 托管</span></p>
   </footer>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll('.lang-switcher a[data-lang]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.setLang(a.getAttribute('data-lang'));
+      });
+    });
+  </script>
 </body>
 </html>

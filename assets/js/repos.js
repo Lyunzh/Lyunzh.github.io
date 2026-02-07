@@ -5,8 +5,12 @@
   var listEl = document.getElementById('repo-list');
   if (!listEl) return;
 
+  function msg(key) {
+    return (window.t && window.t(key)) || key;
+  }
+
   if (!user || user === 'YOUR_GITHUB_USERNAME') {
-    listEl.innerHTML = '<li class="repo-error">请在 index.html 中把 <code>window.GITHUB_USER</code> 改成你的 GitHub 用户名。</li>';
+    listEl.innerHTML = '<li class="repo-error">' + msg('reposErrorConfig') + '</li>';
     return;
   }
 
@@ -19,7 +23,7 @@
     })
     .then(function (repos) {
       if (!Array.isArray(repos) || repos.length === 0) {
-        listEl.innerHTML = '<li class="repo-error">暂无公开仓库，或用户名有误。</li>';
+        listEl.innerHTML = '<li class="repo-error">' + msg('reposEmpty') + '</li>';
         return;
       }
       listEl.innerHTML = repos.map(function (r) {
@@ -31,7 +35,7 @@
       }).join('');
     })
     .catch(function () {
-      listEl.innerHTML = '<li class="repo-error">无法加载仓库列表（可能是网络或 GitHub API 限制）。请检查用户名或稍后重试。</li>';
+      listEl.innerHTML = '<li class="repo-error">' + msg('reposErrorNetwork') + '</li>';
     });
 
   function escapeHtml(s) {
