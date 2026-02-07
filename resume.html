@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume | 简历</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="page resume">
+    <header class="resume-header">
+      <a href="index.html" class="back-link">← 返回首页</a>
+      <h1>Resume / 简历</h1>
+    </header>
+
+    <section>
+      <h2>Education Background</h2>
+      <div class="edu-block">
+        <strong>Tongji University（同济大学）</strong>
+        <span>Bachelor of Software Engineering · 2022.09 - 2026.07</span>
+        <div class="tech-badges" style="margin-top:0.5rem">
+          <a href="https://www.tongji.edu.cn/" target="_blank" rel="noopener">学校官网</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Core Skills</h2>
+      <ul class="skills-list">
+        <li><strong>Language Fundamentals：</strong> Proficient in
+          <span class="tech-badges" style="display:inline-flex;margin:0">
+            <a href="https://www.oracle.com/java/" target="_blank" rel="noopener">Java</a>
+            <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/" target="_blank" rel="noopener">JUC</a>
+            <a href="https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html" target="_blank" rel="noopener">JVM</a>
+            <a href="https://go.dev/" target="_blank" rel="noopener">Golang</a>
+            <a href="https://go.dev/tour/concurrency/1" target="_blank" rel="noopener">Goroutine</a>
+            <a href="https://www.python.org/" target="_blank" rel="noopener">Python</a>
+          </span>
+          — performance optimization
+        </li>
+        <li><strong>Databases：</strong> Skilled in
+          <a href="https://www.mysql.com/" target="_blank" rel="noopener">MySQL</a> and
+          <a href="https://redis.io/" target="_blank" rel="noopener">Redis</a>; experienced in slow query optimization and index tuning
+        </li>
+        <li><strong>AI：</strong> AI-Native; Agent engineering; experienced with Cursor/OpenCode, Claude Code, Zed, etc.; capable of delivering shippable code in prod with coding Agents</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Internship Experience</h2>
+
+      <div class="company-block">
+        <a href="https://www.zhipin.com/" target="_blank" rel="noopener">
+          <img class="company-logo" src="https://www.google.com/s2/favicons?domain=zhipin.com&sz=64" alt="BOSS直聘" />
+          <div class="company-info">
+            <strong>Boss ZHIPPIN | AI Agent Engineer Intern</strong>
+            <span>2026.01 - now</span>
+          </div>
+        </a>
+        <div class="tech-badges">
+          <a href="https://www.python.org/" target="_blank" rel="noopener">Python</a>
+          <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a>
+        </div>
+      </div>
+
+      <div class="company-block">
+        <a href="https://www.19pine.ai/" target="_blank" rel="noopener">
+          <img class="company-logo" src="https://www.google.com/s2/favicons?domain=19pine.ai&sz=64" alt="Pine AI" />
+          <div class="company-info">
+            <strong>Pine AI | AI Agent Development Intern</strong>
+            <span>2025.05 - 2025.09</span>
+          </div>
+        </a>
+        <div class="tech-badges">
+          <a href="https://go.dev/" target="_blank" rel="noopener">Golang</a>
+        </div>
+      </div>
+
+      <h3>Pine AI — Key work</h3>
+      <ul>
+        <li><strong>Monitoring System：</strong> Developed the monitor module, integrated multiple PaaS platforms, utilized websocket callbacks (webhook), and implemented comprehensive monitoring of agent status via OpenTelemetry.</li>
+        <li><strong>Message Bus Design：</strong> Designed and implemented a server-side distributed bus; integrated service modules via a pipeline bus, improving response speed and supporting finer-grained interactions between LLM, STT, and TTS; developed the transcriber module.</li>
+        <li><strong>AI Regression Testing Framework：</strong> Designed an agent regression testing system; simulated CSRs with an agentic approach and external LLMs; tested AI reliability across AUTH, Fraud, etc. via multi-turn conversations; wrote exec and eval prompts for simulation and scoring.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Project Experience</h2>
+      <div class="project-card">
+        <h3>People review</h3>
+        <div class="tech-badges">
+          <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener">Spring Boot</a>
+          <a href="https://www.nginx.com/" target="_blank" rel="noopener">Nginx</a>
+          <a href="https://www.mysql.com/" target="_blank" rel="noopener">MySQL</a>
+          <a href="https://baomidou.com/" target="_blank" rel="noopener">MyBatis-Plus</a>
+          <a href="https://redis.io/" target="_blank" rel="noopener">Redis</a>
+        </div>
+        <ul>
+          <li>Resolved Session sharing in cluster mode; implemented user login verification and permission refresh via interceptors.</li>
+          <li>Addressed database-cache consistency with Cache Aside pattern.</li>
+          <li>Reduced DB pressure with Redis for high-frequency data; solved cache penetration, avalanche, and breakdown.</li>
+          <li>Seckill eligibility pre-check with Redis + Lua; optimistic lock to prevent overselling.</li>
+          <li>Thread safety for "one order per user" in cluster mode via Redis distributed locks.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="index.html">Home</a> · Hosted on GitHub Pages</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

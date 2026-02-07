@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | GitHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1>Hi, I'm on GitHub</h1>
+      <p>Software Engineering · Backend & AI Agent</p>
+      <div class="hero-cta">
+        <a href="resume.html" class="primary">查看简历 / Resume</a>
+        <a href="https://github.com/" class="secondary" id="github-profile-link">GitHub Profile</a>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>Repositories</h2>
+      <ul class="repo-list" id="repo-list">
+        <li class="repo-loading">正在加载仓库列表…</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <p>Hosted on GitHub Pages</p>
+  </footer>
+
+  <script>
+    // 替换为你的 GitHub 用户名，用于拉取仓库列表与个人主页链接
+    window.GITHUB_USER = 'YOUR_GITHUB_USERNAME';
+  </script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/repos.js"></script>
+</body>
+</html>
