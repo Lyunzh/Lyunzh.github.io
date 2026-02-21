@@ -525,21 +525,21 @@
 
   <!-- ===== Side decorations ===== -->
   <div class="side-social">
-    <a href="https://github.com/23563" target="_blank" rel="noopener" class="side-icon" aria-label="GitHub">
+    <a href="https://github.com/Lyunzh" target="_blank" rel="noopener" class="side-icon" aria-label="GitHub">
       <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
     </a>
-    <a href="mailto:your@email.com" class="side-icon" aria-label="Email">
+    <a href="yunzhi070@gmail.com" class="side-icon" aria-label="Email">
       <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </a>
   </div>
   <div class="side-email">
-    <a href="mailto:your@email.com">your@email.com</a>
+    <a href="mailto:your@email.com">yunzhi070@gmail.com</a>
   </div>
 
   <!-- ===== Hero ===== -->
   <section class="hero">
     <p class="hero-hello" data-k="hero-hello">Hi, my name is</p>
-    <h1 class="hero-name" data-k="hero-name">Yujia Wang.</h1>
+    <h1 class="hero-name" data-k="hero-name">Yunzhi Li.</h1>
     <h2 class="hero-tagline">
       <span id="typing-text"></span><span class="typing-cursor" aria-hidden="true"></span>
     </h2>
@@ -677,6 +677,30 @@
     <section class="sec" data-reveal>
       <h2 class="sec-title"><span class="num">04.</span> <span data-k="s-proj">Projects</span></h2>
 
+      <div class="proj-card" style="margin-bottom:1.5rem">
+        <div class="proj-label" data-k="lt-label">Featured Project</div>
+        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.6rem">
+          <div class="proj-name" style="margin-bottom:0" data-k="lt-name">LivingTown — AI-Powered NPC Engine for Stardew Valley</div>
+          <a href="https://github.com/Lyunzh/LivingTown" target="_blank" rel="noopener" class="side-icon" style="width:18px;height:18px;flex-shrink:0;color:var(--light-slate)" aria-label="GitHub repo">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="pill-row" style="margin-bottom:1rem; margin-top:0">
+          <span class="pill">C#</span>
+          <span class="pill">.NET 6</span>
+          <span class="pill">DeepSeek API</span>
+          <span class="pill">GOAP</span>
+          <span class="pill">SMAPI</span>
+        </div>
+        <ul class="proj-list">
+          <li data-k="lt-i1">Built a ReACT multi-agent engine from scratch in pure C# with parallel tool execution (SemaphoreSlim), sub-agent delegation, and OpenAI function-calling protocol — zero dependency on LangChain/AutoGen.</li>
+          <li data-k="lt-i2">Designed a hybrid neuro-symbolic architecture with an O(1) entropy-based watchdog that reduces LLM API calls by ~80% via heuristic escalation scoring and regex short-circuit caching.</li>
+          <li data-k="lt-i3">Architected an Agent → Tool → GOAP bridge where LLM-generated high-level goals are resolved into validated action sequences by a Dijkstra-based GOAP planner — separating neural reasoning from deterministic execution.</li>
+          <li data-k="lt-i4">Implemented a dual-layer NPC memory system (in-RAM event buffer + persistent modData storage) with importance-scored truncation and lazy LLM-powered compaction on day-end.</li>
+          <li data-k="lt-i5">Created an intent-recognition persona schema with keyword-triggered fourth-wall-breaking hooks, enabling contextually surprising NPC behavior across 6 characters.</li>
+        </ul>
+      </div>
+
       <div class="proj-card">
         <div class="proj-label" data-k="p1-label">Featured Project</div>
         <div class="proj-name" data-k="p1-name">People Review</div>
@@ -700,7 +724,7 @@
   </main>
 
   <footer class="footer">
-    <p data-k="footer">Designed & Built by Yujia Wang</p>
+    <p data-k="footer">Designed & Built by Yunzhi Li</p>
     <p style="margin-top:0.4rem"><a href="index.html" data-k="f-home">Home</a> · Hosted on GitHub Pages</p>
   </footer>
 
@@ -715,7 +739,7 @@
         'nav-logo':   'Portfolio',
         'nav-back':   'back',
         'hero-hello': 'Hi, my name is',
-        'hero-name':  'Yujia Wang.',
+        'hero-name':  'Yunzhi Li.',
         'hero-desc':  "I'm an AI Agent engineer interning at BOSS直聘, specializing in multi-agent systems and LLM-native product development. Previously built agent infrastructure at Pine AI. Currently pursuing a B.S. in Software Engineering at Tongji University.",
         'hero-btn':   'Check out my projects →',
         's-edu':      'Education',
@@ -742,6 +766,13 @@
         'e2-w2':      '<strong>Message Bus Design:</strong> Designed and implemented A2A (Agent-to-Agent) message pipeline and server-side distributed bus; enabled finer-grained LLM ↔ STT ↔ TTS coordination with improved response latency.',
         'e2-w3':      '<strong>AI Regression Testing Framework:</strong> Designed an agentic regression testing system; simulated CSRs with external LLMs to stress-test AI reliability across AUTH and Fraud scenarios via multi-turn evaluation; authored exec and eval prompts.',
         's-proj':     'Projects',
+        'lt-label':   'Featured Project',
+        'lt-name':    'LivingTown — AI-Powered NPC Engine for Stardew Valley',
+        'lt-i1':      'Built a ReACT multi-agent engine from scratch in pure C# with parallel tool execution (SemaphoreSlim), sub-agent delegation, and OpenAI function-calling protocol — zero dependency on LangChain/AutoGen.',
+        'lt-i2':      'Designed a hybrid neuro-symbolic architecture with an O(1) entropy-based watchdog that reduces LLM API calls by ~80% via heuristic escalation scoring and regex short-circuit caching.',
+        'lt-i3':      'Architected an Agent → Tool → GOAP bridge where LLM-generated high-level goals are resolved into validated action sequences by a Dijkstra-based GOAP planner — separating neural reasoning from deterministic execution.',
+        'lt-i4':      'Implemented a dual-layer NPC memory system (in-RAM event buffer + persistent modData storage) with importance-scored truncation and lazy LLM-powered compaction on day-end.',
+        'lt-i5':      'Created an intent-recognition persona schema with keyword-triggered fourth-wall-breaking hooks, enabling contextually surprising NPC behavior across 6 characters.',
         'p1-label':   'Featured Project',
         'p1-name':    'People Review',
         'p1-i1':      'Resolved session sharing in cluster mode; login verification and permission refresh via interceptors.',
@@ -749,14 +780,14 @@
         'p1-i3':      'Redis for high-frequency reads; solved cache penetration, avalanche, and breakdown.',
         'p1-i4':      'Seckill pre-check with Redis + Lua scripts; optimistic lock to prevent overselling.',
         'p1-i5':      'Thread-safe "one order per user" in cluster mode via Redis distributed locks.',
-        'footer':     'Designed & Built by Yujia Wang',
+        'footer':     'Designed & Built by Yunzhi Li',
         'f-home':     'Home',
       },
       zh: {
         'nav-logo':   '作品集',
         'nav-back':   '返回',
         'hero-hello': '你好，我是',
-        'hero-name':  '王宇佳。',
+        'hero-name':  '李云智。',
         'hero-desc':  '目前在 BOSS直聘 实习，专注于多智能体系统与 LLM 原生产品开发；此前在 Pine AI 参与构建 Agent 基础设施。同济大学软件工程专业在读。',
         'hero-btn':   '查看我的项目 →',
         's-edu':      '教育背景',
@@ -783,6 +814,13 @@
         'e2-w2':      '<strong>消息总线设计：</strong>设计并实现 A2A（Agent-to-Agent）消息管道与服务端分布式总线；提升响应速度，支持 LLM ↔ STT ↔ TTS 更细粒度的协调交互。',
         'e2-w3':      '<strong>AI 回归测试框架：</strong>设计 Agent 回归测试系统；用外部 LLM 模拟客服，通过多轮对话验证 AUTH、Fraud 等场景下 AI 的可靠性；编写 exec 与 eval prompt。',
         's-proj':     '项目',
+        'lt-label':   '代表项目',
+        'lt-name':    'LivingTown — 星露谷物语 AI NPC 引擎',
+        'lt-i1':      '从零实现 ReACT 多智能体引擎，支持并行工具执行（SemaphoreSlim）、子智能体派生和 OpenAI function-calling 协议，不依赖 LangChain/AutoGen 等第三方框架。',
+        'lt-i2':      '设计混合神经符号架构，通过 O(1) 熵值看门狗 + 正则短路缓存，将 LLM API 调用量降低约 80%。',
+        'lt-i3':      '构建 Agent → Tool → GOAP 职责桥接：LLM 通过 set_goal 工具设定高层目标，GOAP 规划器（Dijkstra 前向搜索）自动推导合法动作序列，实现神经推理与确定性执行的解耦。',
+        'lt-i4':      '实现双层 NPC 记忆系统（RAM 事件缓冲 + modData 持久化），支持重要性评分截断和日终 LLM 压缩。',
+        'lt-i5':      '设计意图识别人格 Schema，内含关键词触发的"打破第四面墙"机制，6 个 NPC 各具差异化性格和行为边界。',
         'p1-label':   '代表项目',
         'p1-name':    '点评应用',
         'p1-i1':      '解决集群模式 Session 共享问题；通过拦截器实现登录鉴权与权限刷新。',
@@ -790,7 +828,7 @@
         'p1-i3':      '高频数据用 Redis 降低 DB 压力；解决缓存穿透、雪崩与击穿。',
         'p1-i4':      'Redis + Lua 脚本实现秒杀资格预检；乐观锁防止超卖。',
         'p1-i5':      '集群模式下 Redis 分布式锁保证「一人一单」线程安全。',
-        'footer':     '由王宇佳设计并构建',
+        'footer':     '由李云智设计并构建',
         'f-home':     '首页',
       }
     };
