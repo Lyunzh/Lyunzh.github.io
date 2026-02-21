@@ -6,69 +6,58 @@
   <title>Resume · 简历</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ===== Reset ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #eef2ff;
-      color: #1e293b;
-      line-height: 1.65;
+      font-family: 'Inter', 'Calibre', system-ui, -apple-system, sans-serif;
+      background: var(--navy);
+      color: var(--slate);
+      line-height: 1.7;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== CSS Variables ===== */
     :root {
-      --indigo:   #6366f1;
-      --purple:   #8b5cf6;
-      --cyan:     #06b6d4;
-      --emerald:  #10b981;
-      --amber:    #f59e0b;
-      --rose:     #f43f5e;
-      --text:     #1e293b;
-      --muted:    #64748b;
-      --card:     rgba(255,255,255,0.80);
-      --border:   rgba(99,102,241,0.14);
-      --r:        16px;
-      --sh:       0 4px 24px rgba(99,102,241,0.09);
-      --sh-h:     0 12px 40px rgba(99,102,241,0.18);
+      --dark-navy:     #020c1b;
+      --navy:          #0a192f;
+      --light-navy:    #112240;
+      --lightest-navy: #233554;
+      --navy-shadow:   rgba(2, 12, 27, 0.7);
+      --dark-slate:    #495670;
+      --slate:         #8892b0;
+      --light-slate:   #a8b2d1;
+      --lightest-slate:#ccd6f6;
+      --white:         #e6f1ff;
+      --green:         #64ffda;
+      --green-tint:    rgba(100, 255, 218, 0.1);
+      --pink:          #f57dff;
+      --blue:          #57cbff;
+      --font-mono:     'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+      --r:             6px;
+      --easing:        cubic-bezier(0.645, 0.045, 0.355, 1);
+      --transition:    all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
 
-    /* ===== Scrollbar ===== */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #a5b4fc; border-radius: 99px; }
+    ::selection { background: var(--green-tint); color: var(--lightest-slate); }
 
-    /* ===== Scroll Progress Bar ===== */
-    #progress-bar {
-      position: fixed;
-      top: 0; left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--indigo), var(--cyan), var(--emerald));
-      z-index: 9999;
-      transition: width 0.08s linear;
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--dark-slate); border-radius: 3px; }
 
-    /* ===== Fixed Background Orbs ===== */
-    .page-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: #eef2ff;
-      pointer-events: none;
+    a { color: var(--green); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--green); }
+
+    /* ===== Numbered headings prefix ===== */
+    .num {
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      font-weight: 400;
+      margin-right: 0.5rem;
     }
-    .page-bg span {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.18;
-    }
-    .page-bg span:nth-child(1) { width:600px; height:600px; background:#818cf8; top:5%;  left:-80px; }
-    .page-bg span:nth-child(2) { width:450px; height:450px; background:#67e8f9; top:35%; right:-60px; }
-    .page-bg span:nth-child(3) { width:500px; height:500px; background:#6ee7b7; bottom:5%; left:25%; }
 
     /* ===== Top Nav ===== */
     .topnav {
@@ -78,47 +67,57 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.85rem 2rem;
-      background: rgba(238,242,255,0.78);
-      backdrop-filter: blur(14px) saturate(1.8);
-      -webkit-backdrop-filter: blur(14px) saturate(1.8);
-      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      height: 60px;
+      background: rgba(10, 25, 47, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition);
     }
-    .back-link {
-      display: inline-flex;
+    .nav-left {
+      display: flex;
       align-items: center;
-      gap: 0.4rem;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: color 0.2s;
+      gap: 2rem;
     }
-    .back-link:hover { color: var(--indigo); text-decoration: none; }
+    .nav-logo {
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo:hover { opacity: 0.8; text-decoration: none; }
+    .nav-back {
+      color: var(--light-slate);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    .nav-back:hover { color: var(--green); text-decoration: none; }
     .lang-toggle {
       display: flex;
-      background: rgba(99,102,241,0.10);
-      border-radius: 999px;
-      padding: 3px;
-      gap: 0;
+      border: 1px solid var(--lightest-navy);
+      border-radius: var(--r);
+      overflow: hidden;
     }
     .lang-toggle button {
       border: none;
       background: transparent;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 0.3rem 0.95rem;
-      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.35rem 0.85rem;
       cursor: pointer;
-      color: var(--muted);
-      transition: all 0.22s;
-      letter-spacing: 0.02em;
+      color: var(--slate);
+      transition: var(--transition);
+      letter-spacing: 0.04em;
     }
     .lang-toggle button.active {
-      background: var(--indigo);
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(99,102,241,0.35);
+      background: var(--green-tint);
+      color: var(--green);
+    }
+    .lang-toggle button:hover:not(.active) {
+      background: rgba(100, 255, 218, 0.05);
+      color: var(--lightest-slate);
     }
 
     /* ===== Hero ===== */
@@ -127,718 +126,561 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 2rem 5rem;
+      padding: 0 clamp(1.5rem, 8vw, 10rem);
       position: relative;
-      overflow: hidden;
     }
-    .hero-gradient {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg,
-        #667eea 0%, #764ba2 20%, #f64f59 45%,
-        #c471ed 65%, #12c2e9 85%, #667eea 100%);
-      background-size: 400% 400%;
-      animation: gradShift 9s ease infinite;
-    }
-    @keyframes gradShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .hero-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      opacity: 0.28;
-      animation: floatOrb 7s ease-in-out infinite;
-    }
-    .hero-orb-a { width:380px; height:380px; background:#fff; top:-80px; left:-80px; animation-delay:0s; }
-    .hero-orb-b { width:280px; height:280px; background:#fde68a; bottom:20px; right:80px; animation-delay:2.5s; }
-    .hero-orb-c { width:200px; height:200px; background:#bfdbfe; top:45%; left:62%; animation-delay:5s; }
-    @keyframes floatOrb {
-      0%,100% { transform: translateY(0) scale(1); }
-      50%      { transform: translateY(-22px) scale(1.06); }
-    }
-    .hero-body { position: relative; z-index: 1; }
-    .hero-avatar {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.22);
-      border: 2.5px solid rgba(255,255,255,0.55);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.4rem;
-      margin: 0 auto 1.6rem;
-      animation: avatarPulse 3.2s ease-in-out infinite;
-    }
-    @keyframes avatarPulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.45); }
-      50%      { box-shadow: 0 0 0 18px rgba(255,255,255,0); }
+    .hero-hello {
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s 0.1s var(--easing) both;
     }
     .hero-name {
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.025em;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.18);
-      margin-bottom: 0.6rem;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--lightest-slate);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s 0.2s var(--easing) both;
     }
-    .hero-subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
-      font-weight: 400;
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 0.25rem;
-      min-height: 2rem;
+    .hero-tagline {
+      font-size: clamp(1.6rem, 4.5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--slate);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      min-height: 1.3em;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s 0.3s var(--easing) both;
     }
     .typing-cursor {
       display: inline-block;
-      width: 2px;
-      height: 1.1em;
-      background: rgba(255,255,255,0.85);
-      margin-left: 2px;
-      vertical-align: middle;
-      animation: blink 0.85s step-end infinite;
+      width: 3px;
+      height: 0.85em;
+      background: var(--green);
+      margin-left: 3px;
+      vertical-align: baseline;
+      animation: blink 1s step-end infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .hero-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      justify-content: center;
-      margin: 1.2rem 0 2rem;
-    }
-    .hero-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.32rem 0.82rem;
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.32);
-      border-radius: 999px;
-      color: #fff;
-      font-size: 0.82rem;
-      font-weight: 500;
-      backdrop-filter: blur(6px);
+    .hero-desc {
+      max-width: 540px;
+      font-size: 1rem;
+      color: var(--slate);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s 0.4s var(--easing) both;
     }
     .hero-cta {
       display: flex;
-      gap: 0.9rem;
+      gap: 1rem;
       flex-wrap: wrap;
-      justify-content: center;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s 0.5s var(--easing) both;
     }
-    .btn {
+    .btn-outline {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.68rem 1.45rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      font-family: inherit;
+      padding: 0.75rem 1.6rem;
+      border: 1px solid var(--green);
+      border-radius: var(--r);
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      background: var(--green-tint);
       text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.22s;
-    }
-    .btn-solid {
-      background: #fff;
-      color: var(--indigo);
-    }
-    .btn-solid:hover {
-      background: #f0f4ff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-      color: var(--indigo);
-      text-decoration: none;
-    }
-    .btn-ghost {
-      background: rgba(255,255,255,0.16);
-      color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.45);
-      backdrop-filter: blur(8px);
-    }
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.26);
-      transform: translateY(-2px);
-      text-decoration: none;
-      color: #fff;
-    }
-    .scroll-cue {
-      position: absolute;
-      bottom: 1.8rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.75rem;
-      letter-spacing: 0.06em;
-      animation: cueFloat 2.2s ease-in-out infinite;
-    }
-    @keyframes cueFloat {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(7px); }
-    }
-    .scroll-cue-arrow {
-      width: 16px; height: 16px;
-      border-right: 2px solid rgba(255,255,255,0.6);
-      border-bottom: 2px solid rgba(255,255,255,0.6);
-      transform: rotate(45deg);
     }
 
-    /* ===== Fade-in staggered ===== */
-    .fi  { opacity: 0; transform: translateY(18px); animation: fadeUp 0.55s ease both; }
-    .fi1 { animation-delay: 0.05s; }
-    .fi2 { animation-delay: 0.15s; }
-    .fi3 { animation-delay: 0.25s; }
-    .fi4 { animation-delay: 0.38s; }
-    .fi5 { animation-delay: 0.50s; }
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ===== Main content area ===== */
+    /* ===== Section layout ===== */
     .content {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 4.5rem 1.5rem 7rem;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
     }
-
-    /* ===== Scroll-reveal sections ===== */
-    .reveal {
+    .sec {
+      padding: 5rem 0;
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1),
-                  transform 0.55s cubic-bezier(0.16,1,0.3,1);
+      transform: translateY(24px);
+      transition: opacity 0.5s var(--easing), transform 0.5s var(--easing);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal + .reveal { transition-delay: 0.07s; }
-
-    /* ===== Section header ===== */
-    .sec {  margin-bottom: 3.5rem; }
-    .sec-head {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.4rem;
-    }
-    .sec-icon {
-      width: 40px; height: 40px;
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
+    .sec.visible { opacity: 1; transform: none; }
     .sec-title {
-      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
+      color: var(--lightest-slate);
+      margin-bottom: 2.5rem;
+      white-space: nowrap;
     }
-    .sec-rule {
+    .sec-title::after {
+      content: '';
+      display: block;
       flex: 1;
       height: 1px;
-      background: linear-gradient(to right, rgba(99,102,241,0.22), transparent);
-    }
-
-    /* ===== Glass card ===== */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1.4rem 1.5rem;
-      box-shadow: var(--sh);
-      backdrop-filter: blur(10px) saturate(1.5);
-      -webkit-backdrop-filter: blur(10px) saturate(1.5);
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s, border-color 0.25s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--sh-h);
-      border-color: rgba(99,102,241,0.3);
+      background: var(--lightest-navy);
+      margin-left: 0.8rem;
     }
 
     /* ===== Education ===== */
-    .edu-row {
+    .edu-card {
       display: flex;
       align-items: center;
       gap: 1.2rem;
+      padding: 1.5rem;
+      background: var(--light-navy);
+      border-radius: var(--r);
+      border: 1px solid var(--lightest-navy);
+      transition: var(--transition);
     }
-    .edu-icon-wrap {
-      width: 58px; height: 58px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+    .edu-card:hover {
+      border-color: var(--green);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -15px var(--navy-shadow);
+    }
+    .edu-icon {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      background: var(--green-tint);
+      border: 1px solid rgba(100,255,218,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
     }
-    .edu-name  { font-weight: 700; font-size: 1rem; margin-bottom: 0.18rem; }
-    .edu-meta  { color: var(--muted); font-size: 0.88rem; }
-    .edu-loc   {
+    .edu-name { font-weight: 600; font-size: 1rem; color: var(--lightest-slate); margin-bottom: 0.15rem; }
+    .edu-detail { color: var(--slate); font-size: 0.88rem; }
+    .edu-loc {
       display: inline-flex;
       align-items: center;
       gap: 0.25rem;
-      margin-top: 0.38rem;
-      padding: 0.18rem 0.58rem;
-      background: rgba(99,102,241,0.09);
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--indigo);
+      margin-top: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--green);
     }
 
     /* ===== Skills ===== */
-    .skills-grid { display: grid; gap: 0.85rem; }
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1.1rem 1.3rem;
-      box-shadow: var(--sh);
-      backdrop-filter: blur(10px);
-      transition: transform 0.22s, box-shadow 0.22s;
+    .skills-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 640px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+    .skill-block { margin-bottom: 0; }
+    .skill-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--green);
+      margin-bottom: 0.65rem;
+      letter-spacing: 0.04em;
     }
-    .skill-card:hover { transform: translateY(-3px); box-shadow: var(--sh-h); }
-    .skill-cat {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--text);
-    }
-    .skill-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.42rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .tag {
       display: inline-block;
-      padding: 0.26rem 0.68rem;
-      border-radius: 8px;
-      font-size: 0.79rem;
-      font-weight: 500;
-      font-family: 'JetBrains Mono', monospace;
+      padding: 0.3rem 0.72rem;
+      background: var(--light-navy);
+      border: 1px solid var(--lightest-navy);
+      border-radius: var(--r);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--light-slate);
+      transition: var(--transition);
       cursor: default;
-      transition: transform 0.18s, box-shadow 0.18s;
     }
-    .tag:hover { transform: translateY(-2px) scale(1.06); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .tag:hover {
+      color: var(--green);
+      border-color: var(--green);
+      background: var(--green-tint);
+    }
 
-    /* ===== Timeline ===== */
-    .timeline { position: relative; padding-left: 1.9rem; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 8px; top: 12px; bottom: 12px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--indigo), var(--cyan), var(--emerald));
-      border-radius: 2px;
-    }
-    .tl-item { position: relative; margin-bottom: 2rem; }
-    .tl-dot {
-      position: absolute;
-      left: -1.9rem;
-      top: 1.15rem;
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      border: 2.5px solid #fff;
-      z-index: 1;
-    }
-    .exp-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
+    /* ===== Experience ===== */
+    .exp-item {
+      position: relative;
       padding: 1.5rem;
-      box-shadow: var(--sh);
-      backdrop-filter: blur(10px) saturate(1.5);
-      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s, border-color 0.25s;
+      background: var(--light-navy);
+      border-radius: var(--r);
+      border: 1px solid var(--lightest-navy);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
     }
-    .exp-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--sh-h);
-      border-color: rgba(99,102,241,0.28);
+    .exp-item:hover {
+      border-color: rgba(100,255,218,0.25);
+      box-shadow: 0 10px 30px -15px var(--navy-shadow);
     }
-    .exp-header {
+    .exp-overline {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 1.1rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
     }
-    .exp-logo {
-      width: 50px; height: 50px;
-      border-radius: 13px;
-      background: #fff;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
+    .exp-company {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--lightest-slate);
     }
-    .exp-logo img { width: 38px; height: 38px; object-fit: contain; }
-    .exp-meta { flex: 1; min-width: 0; }
-    .exp-company { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.18rem; }
-    .exp-company a { color: inherit; text-decoration: none; }
-    .exp-company a:hover { color: var(--indigo); }
-    .exp-period  { font-size: 0.84rem; color: var(--muted); }
+    .exp-company a { color: var(--lightest-slate); }
+    .exp-company a:hover { color: var(--green); }
+    .exp-period {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--slate);
+    }
     .exp-badge {
-      padding: 0.22rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      background: rgba(99,102,241,0.12);
-      color: var(--indigo);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .work-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
-    .work-item {
-      display: flex;
-      gap: 0.7rem;
-      align-items: flex-start;
-      padding: 0.82rem 1rem;
-      border-left: 3px solid;
-      border-radius: 0 10px 10px 0;
-      font-size: 0.88rem;
-      line-height: 1.65;
-      transition: background 0.18s;
-    }
-    .work-item:hover { filter: brightness(0.97); }
-    .work-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 0.08rem; }
-    .work-text { color: var(--text); }
-    .work-text strong { color: var(--text); font-weight: 600; }
-    .work-text em { font-style: italic; color: var(--indigo); font-weight: 500; }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-top: 0.9rem; }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.2rem 0.58rem;
-      background: rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.07);
-      border-radius: 6px;
-      font-size: 0.76rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      transition: all 0.18s;
-    }
-    .pill:hover {
-      background: rgba(99,102,241,0.08);
-      border-color: rgba(99,102,241,0.28);
-      color: var(--indigo);
-      text-decoration: none;
-    }
-
-    /* ===== Project ===== */
-    .proj-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      border: 1px solid var(--green);
       border-radius: var(--r);
-      padding: 1.5rem;
-      box-shadow: var(--sh);
-      backdrop-filter: blur(10px);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
+      padding: 0.15rem 0.55rem;
     }
-    .proj-card::before {
-      content: '';
+    .exp-role {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+    .work-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .work-item {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+    .work-item::before {
+      content: '▹';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--indigo), var(--cyan));
+      left: 0;
+      color: var(--green);
+      font-size: 0.85rem;
+      line-height: 1.65;
     }
-    .proj-card:hover { transform: translateY(-4px); box-shadow: var(--sh-h); }
-    .proj-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
-    .proj-list { list-style: none; padding: 0; margin: 0.6rem 0; display: flex; flex-direction: column; gap: 0.28rem; }
+    .work-item strong { color: var(--lightest-slate); font-weight: 600; }
+    .work-item em { color: var(--green); font-style: normal; font-weight: 500; }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 1rem;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.22rem 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      background: var(--green-tint);
+      border-radius: var(--r);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .pill:hover { background: rgba(100,255,218,0.18); text-decoration: none; }
+
+    /* ===== Projects ===== */
+    .proj-card {
+      padding: 1.5rem;
+      background: var(--light-navy);
+      border: 1px solid var(--lightest-navy);
+      border-radius: var(--r);
+      transition: var(--transition);
+    }
+    .proj-card:hover {
+      border-color: rgba(100,255,218,0.25);
+      box-shadow: 0 10px 30px -15px var(--navy-shadow);
+      transform: translateY(-3px);
+    }
+    .proj-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .proj-name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--lightest-slate);
+      margin-bottom: 0.85rem;
+    }
+    .proj-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
     .proj-list li {
-      font-size: 0.87rem;
-      color: var(--text);
-      padding-left: 1.2rem;
       position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.87rem;
+      color: var(--slate);
       line-height: 1.6;
     }
     .proj-list li::before {
-      content: '▸';
+      content: '▹';
       position: absolute;
       left: 0;
-      color: var(--indigo);
-      font-size: 0.72rem;
-      top: 0.38rem;
+      color: var(--green);
+      font-size: 0.85rem;
     }
 
     /* ===== Footer ===== */
     .footer {
       text-align: center;
-      padding: 2.2rem 1rem;
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,0.45);
-      color: var(--muted);
-      font-size: 0.86rem;
+      padding: 3rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dark-slate);
     }
-    .footer a { color: var(--indigo); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
+    .footer a { color: var(--slate); }
+    .footer a:hover { color: var(--green); }
+
+    /* ===== Side elements (decoration) ===== */
+    .side-email, .side-social {
+      position: fixed;
+      bottom: 0;
+      width: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      z-index: 10;
+    }
+    .side-email { right: 2rem; }
+    .side-social { left: 2rem; }
+    .side-email::after, .side-social::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 90px;
+      background: var(--light-slate);
+    }
+    .side-email a {
+      writing-mode: vertical-rl;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--light-slate);
+      letter-spacing: 0.1em;
+    }
+    .side-email a:hover { color: var(--green); transform: translateY(-3px); }
+    .side-icon {
+      width: 20px; height: 20px;
+      color: var(--light-slate);
+      transition: var(--transition);
+    }
+    .side-icon:hover { color: var(--green); transform: translateY(-3px); }
+    .side-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    @media (max-width: 768px) {
+      .side-email, .side-social { display: none; }
+      .hero { padding: 0 1.5rem; }
+      .topnav { padding: 0 1.2rem; }
+    }
 
     /* ===== Responsive ===== */
-    @media (max-width: 640px) {
-      .topnav { padding: 0.7rem 1rem; }
-      .content { padding: 3rem 1rem 5rem; }
-      .edu-row { flex-direction: column; align-items: flex-start; }
-      .exp-badge { display: none; }
-      .hero { padding: 5.5rem 1.2rem 4.5rem; }
+    @media (max-width: 480px) {
+      .exp-overline { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+      .edu-card { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <!-- Scroll progress -->
-  <div id="progress-bar"></div>
 
-  <!-- Ambient background -->
-  <div class="page-bg" aria-hidden="true">
-    <span></span><span></span><span></span>
-  </div>
-
-  <!-- Top Nav -->
+  <!-- ===== Top Nav ===== -->
   <nav class="topnav">
-    <a href="index.html" class="back-link">
-      ← <span data-k="nav-home">Home</span>
-    </a>
-    <div class="lang-toggle" role="group" aria-label="Language toggle">
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo" data-k="nav-logo">Portfolio</a>
+      <a href="index.html" class="nav-back">← <span data-k="nav-back">back</span></a>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language">
       <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true">EN</button>
-      <button id="btn-zh" onclick="setLang('zh')" aria-pressed="false">中</button>
+      <button id="btn-zh" onclick="setLang('zh')" aria-pressed="false">中文</button>
     </div>
   </nav>
 
-  <!-- ========== HERO ========== -->
-  <section class="hero" aria-label="Introduction">
-    <div class="hero-gradient" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb-a" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb-b" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb-c" aria-hidden="true"></div>
+  <!-- ===== Side decorations ===== -->
+  <div class="side-social">
+    <a href="https://github.com/23563" target="_blank" rel="noopener" class="side-icon" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+    </a>
+    <a href="mailto:your@email.com" class="side-icon" aria-label="Email">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
+  <div class="side-email">
+    <a href="mailto:your@email.com">your@email.com</a>
+  </div>
 
-    <div class="hero-body">
-      <div class="hero-avatar fi fi1" aria-hidden="true">🧑‍💻</div>
-      <h1 class="hero-name fi fi2" data-k="h-name">Yunzhi Li</h1>
-      <p class="hero-subtitle fi fi3">
-        <span id="typing-text"></span><span class="typing-cursor" aria-hidden="true"></span>
-      </p>
-      <div class="hero-chips fi fi4">
-        <span class="hero-chip">🎓 <span data-k="h-chip1">Tongji University · 2026</span></span>
-        <span class="hero-chip">🤖 <span data-k="h-chip2">AI-Native</span></span>
-        <span class="hero-chip">⚡ <span data-k="h-chip3">Java · Go · Python</span></span>
-      </div>
-      <div class="hero-cta fi fi5">
-        <a href="index.html" class="btn btn-solid">← <span data-k="h-btn-home">Back to Home</span></a>
-        <a href="https://github.com/23563" target="_blank" rel="noopener" class="btn btn-ghost">⌥ GitHub</a>
-      </div>
-    </div>
-
-    <div class="scroll-cue" aria-hidden="true">
-      <span data-k="h-scroll">scroll</span>
-      <div class="scroll-cue-arrow"></div>
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <p class="hero-hello" data-k="hero-hello">Hi, my name is</p>
+    <h1 class="hero-name" data-k="hero-name">Yujia Wang.</h1>
+    <h2 class="hero-tagline">
+      <span id="typing-text"></span><span class="typing-cursor" aria-hidden="true"></span>
+    </h2>
+    <p class="hero-desc" data-k="hero-desc">
+      I'm an AI Agent engineer interning at BOSS直聘, specializing in multi-agent systems and LLM-native product development. Previously built agent infrastructure at Pine AI. Currently pursuing a B.S. in Software Engineering at Tongji University.
+    </p>
+    <div class="hero-cta">
+      <a href="index.html" class="btn-outline" data-k="hero-btn">Check out my projects →</a>
     </div>
   </section>
 
-  <!-- ========== MAIN CONTENT ========== -->
+  <!-- ===== Main content ===== -->
   <main class="content">
 
-    <!-- Education -->
-    <div class="sec reveal" data-idx="0">
-      <div class="sec-head">
-        <div class="sec-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">🎓</div>
-        <h2 class="sec-title" data-k="s-edu">Education</h2>
-        <div class="sec-rule"></div>
-      </div>
-      <div class="card">
-        <div class="edu-row">
-          <div class="edu-icon-wrap" aria-hidden="true">🏛</div>
-          <div>
-            <div class="edu-name" data-k="edu-name">Tongji University（同济大学）</div>
-            <div class="edu-meta" data-k="edu-meta">Bachelor of Software Engineering · Sep 2022 – Jul 2026</div>
-            <div class="edu-loc" data-k="edu-loc">📍 Shanghai, China</div>
-          </div>
+    <!-- 01. Education -->
+    <section class="sec" data-reveal>
+      <h2 class="sec-title"><span class="num">01.</span> <span data-k="s-edu">Education</span></h2>
+      <div class="edu-card">
+        <div class="edu-icon">🏛</div>
+        <div>
+          <div class="edu-name" data-k="edu-name">Tongji University（同济大学）</div>
+          <div class="edu-detail" data-k="edu-detail">B.S. Software Engineering · Sep 2022 – Jul 2026</div>
+          <div class="edu-loc" data-k="edu-loc">📍 Shanghai, China</div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Skills -->
-    <div class="sec reveal" data-idx="1">
-      <div class="sec-head">
-        <div class="sec-icon" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">⚡</div>
-        <h2 class="sec-title" data-k="s-skills">Core Skills</h2>
-        <div class="sec-rule"></div>
-      </div>
+    <!-- 02. Skills -->
+    <section class="sec" data-reveal>
+      <h2 class="sec-title"><span class="num">02.</span> <span data-k="s-skills">Skills</span></h2>
       <div class="skills-grid">
-
-        <div class="skill-card">
-          <div class="skill-cat">
-            <div class="skill-dot" style="background:#6366f1"></div>
-            <span data-k="sk-lang">Language &amp; Runtime</span>
-          </div>
+        <div class="skill-block">
+          <div class="skill-label" data-k="sk-lang">Languages & Runtime</div>
           <div class="tags">
-            <span class="tag" style="background:rgba(99,102,241,.1);color:#4f46e5">Java</span>
-            <span class="tag" style="background:rgba(99,102,241,.1);color:#4f46e5">JUC</span>
-            <span class="tag" style="background:rgba(99,102,241,.1);color:#4f46e5">JVM</span>
-            <span class="tag" style="background:rgba(6,182,212,.1);color:#0891b2">Golang</span>
-            <span class="tag" style="background:rgba(6,182,212,.1);color:#0891b2">Goroutine</span>
-            <span class="tag" style="background:rgba(251,191,36,.12);color:#d97706">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">JUC</span>
+            <span class="tag">JVM</span>
+            <span class="tag">Golang</span>
+            <span class="tag">Goroutine</span>
+            <span class="tag">Python</span>
           </div>
         </div>
-
-        <div class="skill-card">
-          <div class="skill-cat">
-            <div class="skill-dot" style="background:#10b981"></div>
-            <span data-k="sk-db">Database</span>
-          </div>
+        <div class="skill-block">
+          <div class="skill-label" data-k="sk-db">Database</div>
           <div class="tags">
-            <span class="tag" style="background:rgba(16,185,129,.1);color:#059669">MySQL</span>
-            <span class="tag" style="background:rgba(239,68,68,.1);color:#dc2626">Redis</span>
-            <span class="tag" style="background:rgba(16,185,129,.08);color:#059669" data-k="sk-db-extra">Slow Query · Index Tuning</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Redis</span>
+            <span class="tag" data-k="sk-dbx">Slow Query Optimization</span>
+            <span class="tag" data-k="sk-dbx2">Index Tuning</span>
           </div>
         </div>
-
-        <div class="skill-card">
-          <div class="skill-cat">
-            <div class="skill-dot" style="background:#f59e0b"></div>
-            <span data-k="sk-ai">AI Engineering</span>
-          </div>
+        <div class="skill-block">
+          <div class="skill-label" data-k="sk-ai">AI Engineering</div>
           <div class="tags">
-            <span class="tag" style="background:rgba(245,158,11,.1);color:#d97706">Agent Engineering</span>
-            <span class="tag" style="background:rgba(245,158,11,.1);color:#d97706">Multi-Agent</span>
-            <span class="tag" style="background:rgba(245,158,11,.1);color:#d97706">LLM / RAG</span>
-            <span class="tag" style="background:rgba(245,158,11,.08);color:#d97706">Cursor · Claude Code</span>
-            <span class="tag" style="background:rgba(245,158,11,.08);color:#d97706">OpenTelemetry</span>
-            <span class="tag" style="background:rgba(245,158,11,.08);color:#d97706">Prompt Engineering</span>
+            <span class="tag">Agent Engineering</span>
+            <span class="tag">Multi-Agent</span>
+            <span class="tag">LLM / RAG</span>
+            <span class="tag">Prompt Engineering</span>
           </div>
         </div>
-
-      </div>
-    </div>
-
-    <!-- Experience -->
-    <div class="sec reveal" data-idx="2">
-      <div class="sec-head">
-        <div class="sec-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">💼</div>
-        <h2 class="sec-title" data-k="s-exp">Internship Experience</h2>
-        <div class="sec-rule"></div>
-      </div>
-
-      <div class="timeline">
-
-        <!-- BOSS直聘 -->
-        <div class="tl-item">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--indigo); background:var(--indigo)"></div>
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-logo">
-                <img src="https://www.google.com/s2/favicons?domain=zhipin.com&sz=64" alt="BOSS直聘 logo">
-              </div>
-              <div class="exp-meta">
-                <div class="exp-company">
-                  <a href="https://www.zhipin.com/" target="_blank" rel="noopener" data-k="e1-title">BOSS直聘 | AI Agent Engineer Intern</a>
-                </div>
-                <div class="exp-period">2026.01 – <span data-k="present">Present</span></div>
-              </div>
-              <div class="exp-badge" data-k="e1-badge">Current</div>
-            </div>
-
-            <ul class="work-list">
-              <li class="work-item" style="border-left-color:#6366f1; background:rgba(99,102,241,0.05)">
-                <span class="work-icon">🧠</span>
-                <span class="work-text" data-k="e1-w1">
-                  <strong>Multi-Agent System Design:</strong> Explored the internal headhunting multi-agent system and co-owned the <em>Skill / Command / Tool</em> layer — including architecture design, engineering implementation, and iterative optimization. Core objective: stop spending tokens on <em>finding</em> worthy candidates; concentrate token spend on <em>engaging</em> the ones worth talking to.
-                </span>
-              </li>
-              <li class="work-item" style="border-left-color:#8b5cf6; background:rgba(139,92,246,0.05)">
-                <span class="work-icon">🚀</span>
-                <span class="work-text" data-k="e1-w2">
-                  <strong>Headhunting Communication Agent (0 → 1 MVP):</strong> End-to-end owned the headhunting dialogue agent from scratch to a shippable MVP. Introduced a <em>watermark-based concurrency control mechanism</em> — analogous to CAS (Compare-And-Swap) — to guarantee correct agent state transitions and eliminate stale-message processing when users send messages in rapid succession.
-                </span>
-              </li>
-            </ul>
-
-            <div class="pill-row">
-              <a href="https://www.python.org/" target="_blank" rel="noopener" class="pill">Python</a>
-              <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener" class="pill">TypeScript</a>
-              <span class="pill">Multi-Agent</span>
-              <span class="pill">Skill / Command / Tool</span>
-              <span class="pill">Watermark · CAS</span>
-              <span class="pill">LLM</span>
-            </div>
+        <div class="skill-block">
+          <div class="skill-label" data-k="sk-tool">Toolchain</div>
+          <div class="tags">
+            <span class="tag">Cursor · Claude Code</span>
+            <span class="tag">OpenTelemetry</span>
+            <span class="tag">WebSocket</span>
+            <span class="tag">Docker</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Pine AI -->
-        <div class="tl-item">
-          <div class="tl-dot" style="box-shadow:0 0 0 3px var(--cyan); background:var(--cyan)"></div>
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-logo">
-                <img src="https://www.google.com/s2/favicons?domain=19pine.ai&sz=64" alt="Pine AI logo">
-              </div>
-              <div class="exp-meta">
-                <div class="exp-company">
-                  <a href="https://www.19pine.ai/" target="_blank" rel="noopener" data-k="e2-title">Pine AI | AI Agent Development Intern</a>
-                </div>
-                <div class="exp-period">2025.05 – 2025.09</div>
-              </div>
-            </div>
+    <!-- 03. Experience -->
+    <section class="sec" data-reveal>
+      <h2 class="sec-title"><span class="num">03.</span> <span data-k="s-exp">Experience</span></h2>
 
-            <ul class="work-list">
-              <li class="work-item" style="border-left-color:#06b6d4; background:rgba(6,182,212,0.05)">
-                <span class="work-icon">📡</span>
-                <span class="work-text" data-k="e2-w1">
-                  <strong>Monitoring System:</strong> Built the monitor module integrating multiple PaaS platforms; implemented end-to-end agent status observability via WebSocket (webhook) callbacks and OpenTelemetry.
-                </span>
-              </li>
-              <li class="work-item" style="border-left-color:#10b981; background:rgba(16,185,129,0.05)">
-                <span class="work-icon">🔀</span>
-                <span class="work-text" data-k="e2-w2">
-                  <strong>Message Bus Design:</strong> Designed and implemented the A2A (Agent-to-Agent) message pipeline and server-side distributed bus; enabled finer-grained LLM ↔ STT ↔ TTS coordination with improved response latency.
-                </span>
-              </li>
-              <li class="work-item" style="border-left-color:#f59e0b; background:rgba(245,158,11,0.05)">
-                <span class="work-icon">🧪</span>
-                <span class="work-text" data-k="e2-w3">
-                  <strong>AI Regression Testing Framework:</strong> Designed an agentic regression testing system; simulated CSRs with external LLMs to stress-test AI reliability across AUTH and Fraud scenarios via multi-turn evaluation; authored exec and eval prompts.
-                </span>
-              </li>
-            </ul>
-
-            <div class="pill-row">
-              <a href="https://go.dev/" target="_blank" rel="noopener" class="pill">Golang</a>
-              <span class="pill">WebSocket</span>
-              <span class="pill">OpenTelemetry</span>
-              <span class="pill">A2A Pipeline</span>
-              <span class="pill">Prompt Engineering</span>
-            </div>
+      <!-- BOSS直聘 -->
+      <div class="exp-item">
+        <div class="exp-overline">
+          <div class="exp-company">
+            <a href="https://www.zhipin.com/" target="_blank" rel="noopener" data-k="e1-title">BOSS直聘</a>
+            <span class="exp-badge" data-k="e1-badge">Current</span>
           </div>
+          <div class="exp-period">2026.01 – <span data-k="present">Present</span></div>
         </div>
-
+        <div class="exp-role" data-k="e1-role">AI Agent Engineer Intern</div>
+        <ul class="work-list">
+          <li class="work-item" data-k="e1-w1">
+            <strong>Multi-Agent System Design:</strong> Explored the internal headhunting multi-agent system; owned the <em>Skill / Command / Tool</em> layer — architecture design, implementation, and iterative optimization. Core goal: shift token spend from "finding worthy candidates" to "engaging candidates worth spending tokens on."
+          </li>
+          <li class="work-item" data-k="e1-w2">
+            <strong>Headhunting Communication Agent (0→1 MVP):</strong> End-to-end owned the recruiter dialogue agent from scratch. Introduced a <em>watermark-based concurrency control mechanism</em> — analogous to CAS (Compare-And-Swap) — to guarantee correct agent state transitions and eliminate stale-message processing under rapid consecutive user inputs.
+          </li>
+        </ul>
+        <div class="pill-row">
+          <a href="https://www.python.org/" target="_blank" rel="noopener" class="pill">Python</a>
+          <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener" class="pill">TypeScript</a>
+          <span class="pill">Multi-Agent</span>
+          <span class="pill">Skill / Command / Tool</span>
+          <span class="pill">Watermark · CAS</span>
+        </div>
       </div>
-    </div>
 
-    <!-- Projects -->
-    <div class="sec reveal" data-idx="3">
-      <div class="sec-head">
-        <div class="sec-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)">🛠</div>
-        <h2 class="sec-title" data-k="s-proj">Project Experience</h2>
-        <div class="sec-rule"></div>
+      <!-- Pine AI -->
+      <div class="exp-item">
+        <div class="exp-overline">
+          <div class="exp-company">
+            <a href="https://www.19pine.ai/" target="_blank" rel="noopener" data-k="e2-title">Pine AI</a>
+          </div>
+          <div class="exp-period">2025.05 – 2025.09</div>
+        </div>
+        <div class="exp-role" data-k="e2-role">AI Agent Development Intern</div>
+        <ul class="work-list">
+          <li class="work-item" data-k="e2-w1">
+            <strong>Monitoring System:</strong> Built the monitor module integrating multiple PaaS platforms; implemented end-to-end agent status observability via WebSocket callbacks and OpenTelemetry.
+          </li>
+          <li class="work-item" data-k="e2-w2">
+            <strong>Message Bus Design:</strong> Designed and implemented A2A (Agent-to-Agent) message pipeline and server-side distributed bus; enabled finer-grained LLM ↔ STT ↔ TTS coordination with improved response latency.
+          </li>
+          <li class="work-item" data-k="e2-w3">
+            <strong>AI Regression Testing Framework:</strong> Designed an agentic regression testing system; simulated CSRs with external LLMs to stress-test AI reliability across AUTH and Fraud scenarios via multi-turn evaluation; authored exec and eval prompts.
+          </li>
+        </ul>
+        <div class="pill-row">
+          <a href="https://go.dev/" target="_blank" rel="noopener" class="pill">Golang</a>
+          <span class="pill">WebSocket</span>
+          <span class="pill">OpenTelemetry</span>
+          <span class="pill">A2A Pipeline</span>
+          <span class="pill">Prompt Engineering</span>
+        </div>
       </div>
+    </section>
+
+    <!-- 04. Projects -->
+    <section class="sec" data-reveal>
+      <h2 class="sec-title"><span class="num">04.</span> <span data-k="s-proj">Projects</span></h2>
 
       <div class="proj-card">
+        <div class="proj-label" data-k="p1-label">Featured Project</div>
         <div class="proj-name" data-k="p1-name">People Review</div>
-        <div class="pill-row" style="margin-bottom:0.7rem">
+        <div class="pill-row" style="margin-bottom:1rem; margin-top:0">
           <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener" class="pill">Spring Boot</a>
           <a href="https://www.nginx.com/" target="_blank" rel="noopener" class="pill">Nginx</a>
           <a href="https://www.mysql.com/" target="_blank" rel="noopener" class="pill">MySQL</a>
@@ -849,127 +691,130 @@
           <li data-k="p1-i1">Resolved session sharing in cluster mode; login verification and permission refresh via interceptors.</li>
           <li data-k="p1-i2">Database-cache consistency with Cache-Aside pattern.</li>
           <li data-k="p1-i3">Redis for high-frequency reads; solved cache penetration, avalanche, and breakdown.</li>
-          <li data-k="p1-i4">Seckill eligibility pre-check with Redis + Lua scripts; optimistic lock to prevent overselling.</li>
-          <li data-k="p1-i5">Thread-safe "one order per user" guarantee in cluster mode via Redis distributed locks.</li>
+          <li data-k="p1-i4">Seckill pre-check with Redis + Lua scripts; optimistic lock to prevent overselling.</li>
+          <li data-k="p1-i5">Thread-safe "one order per user" in cluster mode via Redis distributed locks.</li>
         </ul>
       </div>
-    </div>
+    </section>
 
   </main>
 
   <footer class="footer">
-    <p>
-      <a href="index.html" data-k="f-home">Home</a>
-      &nbsp;·&nbsp;
-      Hosted on GitHub Pages
-      &nbsp;·&nbsp;
-      <span data-k="f-built">Built with ❤️</span>
-    </p>
+    <p data-k="footer">Designed & Built by Yujia Wang</p>
+    <p style="margin-top:0.4rem"><a href="index.html" data-k="f-home">Home</a> · Hosted on GitHub Pages</p>
   </footer>
 
-  <!-- ========== SCRIPTS ========== -->
+  <!-- ===== Scripts ===== -->
   <script>
   (function () {
     'use strict';
 
-    /* ── i18n data ── */
-    const T = {
+    /* ── i18n ── */
+    var T = {
       en: {
-        'nav-home':  'Home',
-        'h-name':    'Yunzhi Li',
-        'h-chip1':   'Tongji University · 2026',
-        'h-chip2':   'AI-Native',
-        'h-chip3':   'Java · Go · Python',
-        'h-btn-home':'Back to Home',
-        'h-scroll':  'scroll',
-        's-edu':     'Education',
-        'edu-name':  'Tongji University（同济大学）',
-        'edu-meta':  'Bachelor of Software Engineering · Sep 2022 – Jul 2026',
-        'edu-loc':   '📍 Shanghai, China',
-        's-skills':  'Core Skills',
-        'sk-lang':   'Language & Runtime',
-        'sk-db':     'Database',
-        'sk-db-extra':'Slow Query · Index Tuning',
-        'sk-ai':     'AI Engineering',
-        's-exp':     'Internship Experience',
-        'e1-title':  'BOSS直聘 | AI Agent Engineer Intern',
-        'present':   'Present',
-        'e1-badge':  'Current',
-        'e1-w1':     '<strong>Multi-Agent System Design:</strong> Explored the internal headhunting multi-agent system and co-owned the <em>Skill / Command / Tool</em> layer — architecture design, engineering implementation, and iterative optimization. Core objective: stop spending tokens on <em>finding</em> worthy candidates; concentrate token spend on <em>engaging</em> the ones worth talking to.',
-        'e1-w2':     '<strong>Headhunting Communication Agent (0 → 1 MVP):</strong> End-to-end owned the headhunting dialogue agent from scratch to a shippable MVP. Introduced a <em>watermark-based concurrency control mechanism</em> — analogous to CAS (Compare-And-Swap) — to guarantee correct agent state transitions and eliminate stale-message processing when users send messages in rapid succession.',
-        'e2-title':  'Pine AI | AI Agent Development Intern',
-        'e2-w1':     '<strong>Monitoring System:</strong> Built the monitor module integrating multiple PaaS platforms; implemented end-to-end agent status observability via WebSocket (webhook) callbacks and OpenTelemetry.',
-        'e2-w2':     '<strong>Message Bus Design:</strong> Designed and implemented the A2A (Agent-to-Agent) message pipeline and server-side distributed bus; enabled finer-grained LLM ↔ STT ↔ TTS coordination with improved response latency.',
-        'e2-w3':     '<strong>AI Regression Testing Framework:</strong> Designed an agentic regression testing system; simulated CSRs with external LLMs to stress-test AI reliability across AUTH and Fraud scenarios via multi-turn evaluation; authored exec and eval prompts.',
-        's-proj':    'Project Experience',
-        'p1-name':   'People Review',
-        'p1-i1':     'Resolved session sharing in cluster mode; login verification and permission refresh via interceptors.',
-        'p1-i2':     'Database-cache consistency with Cache-Aside pattern.',
-        'p1-i3':     'Redis for high-frequency reads; solved cache penetration, avalanche, and breakdown.',
-        'p1-i4':     'Seckill eligibility pre-check with Redis + Lua scripts; optimistic lock to prevent overselling.',
-        'p1-i5':     'Thread-safe "one order per user" guarantee in cluster mode via Redis distributed locks.',
-        'f-home':    'Home',
-        'f-built':   'Built with ❤️',
+        'nav-logo':   'Portfolio',
+        'nav-back':   'back',
+        'hero-hello': 'Hi, my name is',
+        'hero-name':  'Yujia Wang.',
+        'hero-desc':  "I'm an AI Agent engineer interning at BOSS直聘, specializing in multi-agent systems and LLM-native product development. Previously built agent infrastructure at Pine AI. Currently pursuing a B.S. in Software Engineering at Tongji University.",
+        'hero-btn':   'Check out my projects →',
+        's-edu':      'Education',
+        'edu-name':   'Tongji University（同济大学）',
+        'edu-detail': 'B.S. Software Engineering · Sep 2022 – Jul 2026',
+        'edu-loc':    '📍 Shanghai, China',
+        's-skills':   'Skills',
+        'sk-lang':    'Languages & Runtime',
+        'sk-db':      'Database',
+        'sk-dbx':     'Slow Query Optimization',
+        'sk-dbx2':    'Index Tuning',
+        'sk-ai':      'AI Engineering',
+        'sk-tool':    'Toolchain',
+        's-exp':      'Experience',
+        'e1-title':   'BOSS直聘',
+        'e1-badge':   'Current',
+        'present':    'Present',
+        'e1-role':    'AI Agent Engineer Intern',
+        'e1-w1':      '<strong>Multi-Agent System Design:</strong> Explored the internal headhunting multi-agent system; owned the <em>Skill / Command / Tool</em> layer — architecture design, implementation, and iterative optimization. Core goal: shift token spend from "finding worthy candidates" to "engaging candidates worth spending tokens on."',
+        'e1-w2':      '<strong>Headhunting Communication Agent (0→1 MVP):</strong> End-to-end owned the recruiter dialogue agent from scratch. Introduced a <em>watermark-based concurrency control mechanism</em> — analogous to CAS (Compare-And-Swap) — to guarantee correct agent state transitions and eliminate stale-message processing under rapid consecutive user inputs.',
+        'e2-title':   'Pine AI',
+        'e2-role':    'AI Agent Development Intern',
+        'e2-w1':      '<strong>Monitoring System:</strong> Built the monitor module integrating multiple PaaS platforms; implemented end-to-end agent status observability via WebSocket callbacks and OpenTelemetry.',
+        'e2-w2':      '<strong>Message Bus Design:</strong> Designed and implemented A2A (Agent-to-Agent) message pipeline and server-side distributed bus; enabled finer-grained LLM ↔ STT ↔ TTS coordination with improved response latency.',
+        'e2-w3':      '<strong>AI Regression Testing Framework:</strong> Designed an agentic regression testing system; simulated CSRs with external LLMs to stress-test AI reliability across AUTH and Fraud scenarios via multi-turn evaluation; authored exec and eval prompts.',
+        's-proj':     'Projects',
+        'p1-label':   'Featured Project',
+        'p1-name':    'People Review',
+        'p1-i1':      'Resolved session sharing in cluster mode; login verification and permission refresh via interceptors.',
+        'p1-i2':      'Database-cache consistency with Cache-Aside pattern.',
+        'p1-i3':      'Redis for high-frequency reads; solved cache penetration, avalanche, and breakdown.',
+        'p1-i4':      'Seckill pre-check with Redis + Lua scripts; optimistic lock to prevent overselling.',
+        'p1-i5':      'Thread-safe "one order per user" in cluster mode via Redis distributed locks.',
+        'footer':     'Designed & Built by Yujia Wang',
+        'f-home':     'Home',
       },
       zh: {
-        'nav-home':  '首页',
-        'h-name':    '王宇佳',
-        'h-chip1':   '同济大学 · 2026届',
-        'h-chip2':   'AI 原生',
-        'h-chip3':   'Java · Go · Python',
-        'h-btn-home':'返回首页',
-        'h-scroll':  '下滑',
-        's-edu':     '教育背景',
-        'edu-name':  '同济大学',
-        'edu-meta':  '软件工程 本科 · 2022.09 – 2026.07',
-        'edu-loc':   '📍 上海，中国',
-        's-skills':  '核心技能',
-        'sk-lang':   '编程语言与运行时',
-        'sk-db':     '数据库',
-        'sk-db-extra':'慢查询优化 · 索引调优',
-        'sk-ai':     'AI 工程',
-        's-exp':     '实习经历',
-        'e1-title':  'BOSS直聘 | AI Agent 工程师（实习）',
-        'present':   '至今',
-        'e1-badge':  '在职',
-        'e1-w1':     '<strong>Multi-Agent 系统设计：</strong>深度探索内部猎头 Multi-Agent 系统，主导 <em>Skill / Command / Tool</em> 三层架构设计、工程落地与持续迭代优化；核心目标：不再花 Token 去「找值得的人」，而是将 Token 集中花在「值得花 Token 的人身上」。',
-        'e1-w2':     '<strong>猎头沟通 Agent（0 → 1 MVP）：</strong>独立 Own 猎头对话 Agent 从零到一的 MVP 全流程。引入<em>水位线机制</em>（类比 CAS 原子操作），在用户连续快速输入消息的场景下保障 Agent 状态跳变的正确性，消除过期消息引发的状态污染问题。',
-        'e2-title':  'Pine AI | AI Agent 开发实习生',
-        'e2-w1':     '<strong>监控系统：</strong>开发 monitor 模块，集成多个 PaaS 平台；通过 WebSocket 回调（Webhook）与 OpenTelemetry 实现 Agent 全链路状态可观测性。',
-        'e2-w2':     '<strong>消息总线设计：</strong>设计并实现 A2A（Agent-to-Agent）消息管道与服务端分布式总线；提升响应速度，支持 LLM ↔ STT ↔ TTS 更细粒度的协调交互。',
-        'e2-w3':     '<strong>AI 回归测试框架：</strong>设计 Agent 回归测试系统；用外部 LLM 模拟客服，通过多轮对话验证 AUTH、Fraud 等场景下 AI 的可靠性；编写 exec 与 eval prompt。',
-        's-proj':    '项目经历',
-        'p1-name':   '点评应用',
-        'p1-i1':     '解决集群模式 Session 共享问题；通过拦截器实现登录鉴权与权限刷新。',
-        'p1-i2':     '旁路缓存（Cache-Aside）模式解决数据库与缓存一致性问题。',
-        'p1-i3':     '高频数据用 Redis 降低 DB 压力；解决缓存穿透、雪崩与击穿。',
-        'p1-i4':     'Redis + Lua 脚本实现秒杀资格预检；乐观锁防止超卖。',
-        'p1-i5':     '集群模式下 Redis 分布式锁保证「一人一单」线程安全。',
-        'f-home':    '首页',
-        'f-built':   '用 ❤️ 构建',
+        'nav-logo':   '作品集',
+        'nav-back':   '返回',
+        'hero-hello': '你好，我是',
+        'hero-name':  '王宇佳。',
+        'hero-desc':  '目前在 BOSS直聘 实习，专注于多智能体系统与 LLM 原生产品开发；此前在 Pine AI 参与构建 Agent 基础设施。同济大学软件工程专业在读。',
+        'hero-btn':   '查看我的项目 →',
+        's-edu':      '教育背景',
+        'edu-name':   '同济大学',
+        'edu-detail': '软件工程 本科 · 2022.09 – 2026.07',
+        'edu-loc':    '📍 上海，中国',
+        's-skills':   '技能',
+        'sk-lang':    '编程语言与运行时',
+        'sk-db':      '数据库',
+        'sk-dbx':     '慢查询优化',
+        'sk-dbx2':    '索引调优',
+        'sk-ai':      'AI 工程',
+        'sk-tool':    '工具链',
+        's-exp':      '经历',
+        'e1-title':   'BOSS直聘',
+        'e1-badge':   '在职',
+        'present':    '至今',
+        'e1-role':    'AI Agent 工程师（实习）',
+        'e1-w1':      '<strong>Multi-Agent 系统设计：</strong>深度探索内部猎头 Multi-Agent 系统，主导 <em>Skill / Command / Tool</em> 三层架构设计、工程落地与持续迭代优化；核心目标：不再花 Token 去「找值得的人」，而是将 Token 集中花在「值得花 Token 的人身上」。',
+        'e1-w2':      '<strong>猎头沟通 Agent（0→1 MVP）：</strong>独立 Own 猎头对话 Agent 从零到一的 MVP 全流程。引入<em>水位线机制</em>（类比 CAS 原子操作），在用户连续快速输入消息的场景下保障 Agent 状态跳变的正确性，消除过期消息引发的状态污染问题。',
+        'e2-title':   'Pine AI',
+        'e2-role':    'AI Agent 开发实习生',
+        'e2-w1':      '<strong>监控系统：</strong>开发 monitor 模块，集成多个 PaaS 平台；通过 WebSocket 回调与 OpenTelemetry 实现 Agent 全链路状态可观测性。',
+        'e2-w2':      '<strong>消息总线设计：</strong>设计并实现 A2A（Agent-to-Agent）消息管道与服务端分布式总线；提升响应速度，支持 LLM ↔ STT ↔ TTS 更细粒度的协调交互。',
+        'e2-w3':      '<strong>AI 回归测试框架：</strong>设计 Agent 回归测试系统；用外部 LLM 模拟客服，通过多轮对话验证 AUTH、Fraud 等场景下 AI 的可靠性；编写 exec 与 eval prompt。',
+        's-proj':     '项目',
+        'p1-label':   '代表项目',
+        'p1-name':    '点评应用',
+        'p1-i1':      '解决集群模式 Session 共享问题；通过拦截器实现登录鉴权与权限刷新。',
+        'p1-i2':      '旁路缓存（Cache-Aside）模式解决数据库与缓存一致性问题。',
+        'p1-i3':      '高频数据用 Redis 降低 DB 压力；解决缓存穿透、雪崩与击穿。',
+        'p1-i4':      'Redis + Lua 脚本实现秒杀资格预检；乐观锁防止超卖。',
+        'p1-i5':      '集群模式下 Redis 分布式锁保证「一人一单」线程安全。',
+        'footer':     '由王宇佳设计并构建',
+        'f-home':     '首页',
       }
     };
 
     /* ── typing effect ── */
-    const subtitles = {
-      en: ['AI Agent Engineer', 'Multi-Agent Builder', 'Software Engineering Student', 'AI-Native Developer'],
-      zh: ['AI Agent 工程师', 'Multi-Agent 构建者', '软件工程在校生', 'AI 原生开发者'],
+    var phrases = {
+      en: ['I build things with AI agents.', 'I design multi-agent systems.', 'I ship LLM-native products.'],
+      zh: ['我构建 AI Agent 系统。', '我设计多智能体架构。', '我交付 LLM 原生产品。'],
     };
-    let lang = 'en';
-    let tIdx = 0, cIdx = 0, deleting = false, timer;
-    const typingEl = document.getElementById('typing-text');
+    var lang = 'en';
+    var pIdx = 0, cIdx = 0, deleting = false, timer;
+    var typingEl = document.getElementById('typing-text');
 
     function tick() {
-      const arr = subtitles[lang];
-      const cur = arr[tIdx % arr.length];
-      if (deleting) { cIdx--; } else { cIdx++; }
+      var arr = phrases[lang];
+      var cur = arr[pIdx % arr.length];
+      if (deleting) cIdx--; else cIdx++;
       typingEl.textContent = cur.slice(0, cIdx);
-      let delay = deleting ? 38 : 72;
-      if (!deleting && cIdx === cur.length)  { delay = 2200; deleting = true; }
-      else if (deleting && cIdx === 0)       { deleting = false; tIdx++; delay = 340; }
+      var delay = deleting ? 35 : 65;
+      if (!deleting && cIdx === cur.length) { delay = 2400; deleting = true; }
+      else if (deleting && cIdx === 0) { deleting = false; pIdx++; delay = 400; }
       timer = setTimeout(tick, delay);
     }
-    setTimeout(tick, 900);
+    setTimeout(tick, 800);
 
     /* ── language switch ── */
     function setLang(l) {
@@ -983,22 +828,13 @@
         var key = el.getAttribute('data-k');
         if (T[l][key] !== undefined) el.innerHTML = T[l][key];
       });
-      // reset typing index so it picks up correct language array
-      tIdx = 0; cIdx = 0; deleting = false;
+      pIdx = 0; cIdx = 0; deleting = false;
       clearTimeout(timer);
       typingEl.textContent = '';
       setTimeout(tick, 200);
     }
     window.setLang = setLang;
     setLang('en');
-
-    /* ── scroll progress bar ── */
-    var bar = document.getElementById('progress-bar');
-    window.addEventListener('scroll', function () {
-      var scrolled = document.documentElement.scrollTop || document.body.scrollTop;
-      var total    = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (total > 0 ? (scrolled / total * 100) : 0) + '%';
-    }, { passive: true });
 
     /* ── scroll reveal ── */
     var obs = new IntersectionObserver(function (entries) {
@@ -1008,10 +844,9 @@
           obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(function (el, i) {
-      el.style.transitionDelay = (i * 0.07) + 's';
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
       obs.observe(el);
     });
 
