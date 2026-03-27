@@ -3,30 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | GitHub</title>
+  <title>李云智 · AI Agent / Backend Engineer</title>
+  <meta name="description" content="李云智个人主页：AI Agent 与后端工程实践，聚焦多智能体系统、可用性工程与业务落地。">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
-      <h1>Hi, I'm on GitHub</h1>
-      <p>Software Engineering · Backend & AI Agent</p>
-      <div class="hero-cta">
-        <a href="resume.html" class="primary">查看简历 / Resume</a>
-        <a href="https://github.com/" class="secondary" id="github-profile-link">GitHub Profile</a>
-      </div>
-    </header>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#home">LYUNZH</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#repos">Repos</a>
+    </nav>
+    <div class="topbar-actions">
+      <a href="resume.html" class="button button-ghost">Resume</a>
+      <a href="https://github.com/" id="github-profile-link" class="button button-solid">GitHub</a>
+    </div>
+  </header>
 
-    <section class="section">
-      <h2>Repositories</h2>
-      <ul class="repo-list" id="repo-list">
+  <main id="home" class="page">
+    <section class="hero panel">
+      <p class="kicker">AI-NATIVE PRODUCT ENGINEERING</p>
+      <h1>把 <span>Agent 能力</span> 做成稳定、可扩展、可交付的产品。</h1>
+      <p class="hero-lead">
+        我是李云智，专注 AI Agent 与后端工程。近期在 BOSS 直聘和 Pine AI 围绕多智能体系统、记忆管理、
+        任务编排与可靠性治理做落地实践。这里展示我的工作方法与代表性案例。
+      </p>
+      <div class="hero-metrics" aria-label="关键指标">
+        <article>
+          <strong>2+</strong>
+          <span>多智能体实习项目</span>
+        </article>
+        <article>
+          <strong>3</strong>
+          <span>核心方向：Agent / Backend / Infra</span>
+        </article>
+        <article>
+          <strong>1</strong>
+          <span>独立 AI NPC 引擎（LivingTown）</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="panel section-grid">
+      <div class="section-heading">
+        <p class="kicker">SELECTED EXPERIENCE</p>
+        <h2>我在做什么</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <h3>BOSS 直聘 · AI Agent 工程（实习）</h3>
+          <p>
+            面向猎头场景构建多 Agent 协作链路：对齐用户画像、任务拆解、候选人评估与回复生成，
+            将策略调优与反馈闭环纳入同一工程流程，目标是提升业务转化与稳定性。
+          </p>
+          <ul>
+            <li>设计角色分工与协同协议，减少 Agent 之间重复推理与冲突输出。</li>
+            <li>补齐观测与评估管线：从 prompt 调整升级到可量化的效果优化。</li>
+          </ul>
+        </article>
+        <article class="timeline-item">
+          <h3>Pine AI · Agent Infra（实习）</h3>
+          <p>
+            参与 Agent 基础设施建设：围绕记忆、工具调用、任务队列与失败重试做可复用能力层，
+            让业务 Agent 能更快接入并具备更稳定的线上行为。
+          </p>
+          <ul>
+            <li>推进服务接口标准化，降低新场景接入成本。</li>
+            <li>关注长链路任务可恢复性，减少异常情况下的人肉介入。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="approach" class="panel section-grid">
+      <div class="section-heading">
+        <p class="kicker">WORKING PHILOSOPHY</p>
+        <h2>我的方法论</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Product-first Agent Design</h3>
+          <p>先明确用户任务和成功指标，再决定 Agent 数量、边界、记忆策略与工具链，避免“为 AI 而 AI”。</p>
+        </article>
+        <article class="card">
+          <h3>Reliability by Default</h3>
+          <p>把重试、门禁评估、失败回灌、日志追溯作为默认配置，确保长链路任务可恢复、可迭代。</p>
+        </article>
+        <article class="card">
+          <h3>Engineering with Taste</h3>
+          <p>设计追求克制且一致：版式、节奏、文案语气和交互反馈服务同一叙事，不做拼贴式页面。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="repos" class="panel section-grid">
+      <div class="section-heading">
+        <p class="kicker">LIVE GITHUB DATA</p>
+        <h2>最近仓库动态</h2>
+      </div>
+      <ul class="repo-list" id="repo-list" aria-live="polite">
         <li class="repo-loading">正在加载仓库列表…</li>
       </ul>
     </section>
-  </div>
+  </main>
 
   <footer class="site-footer">
-    <p>Hosted on GitHub Pages</p>
+    <p>Crafted by Lyunzh · Hosted on GitHub Pages</p>
   </footer>
 
   <script>

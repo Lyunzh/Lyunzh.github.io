@@ -6,13 +6,13 @@
   if (!listEl) return;
 
   if (!user || user === 'YOUR_GITHUB_USERNAME') {
-    listEl.innerHTML = '<li class="repo-error">请在 index.html 中把 <code>window.GITHUB_USER</code> 改成你的 GitHub 用户名。</li>';
+    listEl.innerHTML = '<li class="repo-error">请在 index.html 中设置正确的 <code>window.GITHUB_USER</code>。</li>';
     return;
   }
 
-  var url = 'https://api.github.com/users/' + encodeURIComponent(user) + '/repos?sort=updated&per_page=10';
+  var url = 'https://api.github.com/users/' + encodeURIComponent(user) + '/repos?sort=pushed&per_page=8';
 
-  fetch(url, { headers: { Accept: 'application/vnd.github.v3+json' } })
+  fetch(url, { headers: { Accept: 'application/vnd.github+json' } })
     .then(function (res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
@@ -22,23 +22,45 @@
         listEl.innerHTML = '<li class="repo-error">暂无公开仓库，或用户名有误。</li>';
         return;
       }
-      listEl.innerHTML = repos.map(function (r) {
-        var desc = r.description ? '<p class="repo-desc">' + escapeHtml(r.description) + '</p>' : '';
-        var lang = r.language ? '<span>' + escapeHtml(r.language) + '</span>' : '';
-        var stars = r.stargazers_count != null ? '<span>★ ' + r.stargazers_count + '</span>' : '';
-        var meta = (lang || stars) ? '<div class="repo-meta">' + lang + stars + '</div>' : '';
-        return '<li><a href="' + escapeAttr(r.html_url) + '" target="_blank" rel="noopener">' + escapeHtml(r.name) + '</a>' + desc + meta + '</li>';
+
+      var sorted = repos
+        .filter(function (repo) { return !repo.fork; })
+        .sort(function (a, b) { return new Date(b.pushed_at) - new Date(a.pushed_at); })
+        .slice(0, 6);
+
+      listEl.innerHTML = sorted.map(function (repo) {
+        var desc = repo.description ? '<p class="repo-desc">' + escapeHtml(repo.description) + '</p>' : '';
+        var language = repo.language ? '<span>' + escapeHtml(repo.language) + '</span>' : '';
+        var stars = '<span>★ ' + Number(repo.stargazers_count || 0) + '</span>';
+        var updated = '<span>Updated ' + formatDate(repo.pushed_at) + '</span>';
+        var meta = '<div class="repo-meta">' + language + stars + updated + '</div>';
+
+        return (
+          '<li>' +
+            '<a href="' + escapeAttr(repo.html_url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(repo.name) + '</a>' +
+            desc +
+            meta +
+          '</li>'
+        );
       }).join('');
     })
     .catch(function () {
-      listEl.innerHTML = '<li class="repo-error">无法加载仓库列表（可能是网络或 GitHub API 限制）。请检查用户名或稍后重试。</li>';
+      listEl.innerHTML = '<li class="repo-error">仓库加载失败（网络或 GitHub API 限流），请稍后重试。</li>';
     });
+
+  function formatDate(iso) {
+    if (!iso) return 'unknown';
+    var date = new Date(iso);
+    if (Number.isNaN(date.getTime())) return 'unknown';
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
 
   function escapeHtml(s) {
     var div = document.createElement('div');
     div.textContent = s;
     return div.innerHTML;
   }
+
   function escapeAttr(s) {
     return String(s)
       .replace(/&/g, '&amp;')
