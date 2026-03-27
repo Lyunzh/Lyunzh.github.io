@@ -1,0 +1,20 @@
+{
+  "task_prompt": "完全重构个人主页（保留 resume markdown 渲染页面不变），依据简历内容补充合理且重要的工作叙事，达成高品味且可用性强的个人网站。",
+  "max_sprints": 6,
+  "max_retries_per_sprint": 2,
+  "thresholds": {
+    "design_quality": 8.8,
+    "originality": 8.7,
+    "craft": 8.5,
+    "functionality": 8.6
+  },
+  "evaluator_grader": {
+    "design_quality": "Colors, typography, layout, imagery, and details must read as one coherent identity.",
+    "originality": "Reject template defaults and common AI-generated motifs; reward deliberate design decisions.",
+    "craft": "Typography hierarchy, spacing, contrast, and responsive polish must be consistently strong.",
+    "functionality": "Users must understand structure quickly and complete primary actions without guessing."
+  },
+  "planner_command": "echo \"$HARNESS_PROMPT\" > /tmp/harness_planner_prompt.txt && printf '# Spec Placeholder\\n' > {OUTPUT}",
+  "generator_command": "echo \"$HARNESS_PROMPT\" > /tmp/harness_generator_prompt.txt && printf '# Generator Placeholder\\n' > {OUTPUT}",
+  "evaluator_command": "python - <<'PY'\nimport json, os\nout = os.environ['HARNESS_OUTPUT']\nresult = {\n  'scores': {'design_quality': 8.9, 'originality': 8.8, 'craft': 8.7, 'functionality': 8.8},\n  'summary': 'placeholder evaluator result',\n  'must_fix': [],\n  'project_done': False\n}\nopen(out, 'w', encoding='utf-8').write(json.dumps(result, ensure_ascii=False, indent=2) + '\\n')\nPY"
+}

@@ -87,3 +87,14 @@ git push -u origin main
 ```
 
 简历正文来源：原 README 中的教育、技能、实习、项目经历，已整理进 `resume.html` 并加上技术与公司链接。
+
+
+## Long-running Harness（loop 迭代）
+
+仓库已新增 `harness/`，用于执行 Planner → Generator → Evaluator 的长时迭代流程。
+
+```bash
+python harness/run_harness.py --dry-run --run-name smoke-test
+```
+
+详细说明见 `harness/README.md`。
